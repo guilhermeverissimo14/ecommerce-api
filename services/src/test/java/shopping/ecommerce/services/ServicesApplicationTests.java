@@ -1,10 +1,10 @@
-package icompras.ecommerce.servicos;
+package shopping.ecommerce.services;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ServicosApplicationTests {
+class ServicesApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,4 +1,4 @@
-package icompras.ecommerce.customers;
+package shopping.ecommerce.customers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

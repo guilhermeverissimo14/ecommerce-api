@@ -1,10 +1,10 @@
-package icompras.ecommerce.produtos;
+package shopping.ecommerce.customers;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProdutosApplicationTests {
+class CustomersApplicationTests {
 
 	@Test
 	void contextLoads() {
