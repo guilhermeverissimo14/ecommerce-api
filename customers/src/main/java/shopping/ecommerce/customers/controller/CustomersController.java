@@ -1,4 +1,4 @@
-package shopping.ecommerce.products.controller;
+package shopping.ecommerce.customers.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,26 +9,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import shopping.ecommerce.products.model.Product;
-import shopping.ecommerce.products.services.ProductService;
+import shopping.ecommerce.customers.model.Customers;
+import shopping.ecommerce.customers.service.CustomersService;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/customers")
 @RequiredArgsConstructor
-public class ProductController {
-    private final ProductService productService;
+public class CustomersController {
+    private final CustomersService customersService;
 
     @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        productService.saveProduct(product);
-        return ResponseEntity.ok(product);
+    public ResponseEntity<Customers> createCustomers(@RequestBody Customers customers){
+        customersService.saveCustomer(customers);
+        return ResponseEntity.ok(customers);
     }
 
     @GetMapping("{code}")
-    public ResponseEntity<Product> getProductCode(@PathVariable("code") Long code) {
-        return productService.getProductByCode(code)
+    public ResponseEntity<Customers> getCustomerCode(@PathVariable("code") Long code) {
+        return customersService.getCustomerByCode(code)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
 }
