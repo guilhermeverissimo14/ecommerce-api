@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -14,7 +13,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.Data;
+import shopping.eccomerce.orders.dto.PaymentDataDTO;
 
 @Entity
 @Table(name = "orders")
@@ -29,7 +30,7 @@ public class Orders {
     private Long customerCode;
 
     @Column(name = "date_customers", nullable = false)
-    private LocalDateTime dateCustomers;
+    private LocalDateTime orderDate;
 
     @Column(name = "payment_key", columnDefinition = "text")
     private String paymentKey;
@@ -50,7 +51,9 @@ public class Orders {
     @Column(name = "url_nf", columnDefinition = "text")
     private String urlNf;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order")
     private List<OrdersItem> items;
 
+    @Transient //o que faz esse Transient? ele não persiste no banco de dados, mas é usado para transferir dados entre camadas da aplicação
+    private PaymentDataDTO paymentData;
 }
