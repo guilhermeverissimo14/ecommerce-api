@@ -1,4 +1,4 @@
-package shopping.eccomerce.orders.model;
+package shopping.eccomerce.orders.model.enums;
 
 public enum OrderStatus {
     REALIZADO,

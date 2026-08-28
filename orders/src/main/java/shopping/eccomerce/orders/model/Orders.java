@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.Data;
 import shopping.eccomerce.orders.dto.PaymentDataDTO;
+import shopping.eccomerce.orders.model.enums.OrderStatus;
 
 @Entity
 @Table(name = "orders")
