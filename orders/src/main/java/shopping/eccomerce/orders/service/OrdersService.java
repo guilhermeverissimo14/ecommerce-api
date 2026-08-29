@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import shopping.eccomerce.orders.client.ServiceBankClient;
 import shopping.eccomerce.orders.model.Orders;
+import shopping.eccomerce.orders.model.PaymentData;
 import shopping.eccomerce.orders.model.enums.OrderStatus;
+import shopping.eccomerce.orders.model.enums.PaymentType;
 import shopping.eccomerce.orders.repository.OrdersItemRepository;
 import shopping.eccomerce.orders.repository.OrdersRepository;
 import shopping.eccomerce.orders.validator.OrdersValidator;
@@ -49,6 +51,31 @@ public class OrdersService {
        }
 
        ordersRepository.save(order);
+    }
+
+    @Transactional
+    public void addNewPayment(Long orderCode, String dataCard ,PaymentType type){
+        var orderFound = ordersRepository.findById(orderCode);
+
+        if(orderFound.isEmpty()){
+            return;
+        }
+
+        var order = orderFound.get();
+
+        PaymentData paymentData = new PaymentData();
+        paymentData.setPaymentType(type);
+        paymentData.setData(dataCard);
+
+        order.setPaymentData(paymentData);
+        order.setStatus(OrderStatus.REALIZADO);
+        order.setObservation("Novo pagamento ralizado, aguardando o processamento.");
+
+        String newPaymentKey = serviceBankClient.getPayment(order);
+        order.setPaymentKey(newPaymentKey);
+
+        //Aqui ele poderia salvar sozinho sem esse cara
+        ordersRepository.save(order);
     }
     
     private void sendPayment(Orders orders) {

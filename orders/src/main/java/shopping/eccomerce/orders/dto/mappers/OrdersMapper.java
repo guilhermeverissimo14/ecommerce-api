@@ -13,9 +13,9 @@ import org.mapstruct.factory.Mappers;
 
 import shopping.eccomerce.orders.dto.ItemOrdersDTO;
 import shopping.eccomerce.orders.dto.NewOrdersDTO;
-import shopping.eccomerce.orders.model.OrderStatus;
 import shopping.eccomerce.orders.model.Orders;
 import shopping.eccomerce.orders.model.OrdersItem;
+import shopping.eccomerce.orders.model.enums.OrderStatus;
 
 @Mapper(componentModel = "spring")
 public interface OrdersMapper {

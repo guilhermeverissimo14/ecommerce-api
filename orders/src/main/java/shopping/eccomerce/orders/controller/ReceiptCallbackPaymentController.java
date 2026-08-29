@@ -12,7 +12,7 @@ import shopping.eccomerce.orders.dto.ReceiptCallbackPaymentDTO;
 import shopping.eccomerce.orders.service.OrdersService;
 
 @RestController
-@RequestMapping("/pedidos/callback-pagamentos")
+@RequestMapping("/orders/callback-payments")
 @RequiredArgsConstructor
 public class ReceiptCallbackPaymentController {
     

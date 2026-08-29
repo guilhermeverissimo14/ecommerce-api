@@ -15,7 +15,6 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.Data;
-import shopping.eccomerce.orders.dto.PaymentDataDTO;
 import shopping.eccomerce.orders.model.enums.OrderStatus;
 
 @Entity
@@ -56,5 +55,5 @@ public class Orders {
     private List<OrdersItem> items;
 
     @Transient //o que faz esse Transient? ele não persiste no banco de dados, mas é usado para transferir dados entre camadas da aplicação
-    private PaymentDataDTO paymentData;
+    private PaymentData paymentData;
 }
