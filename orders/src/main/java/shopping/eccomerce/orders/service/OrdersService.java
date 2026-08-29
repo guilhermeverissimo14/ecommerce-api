@@ -10,6 +10,7 @@ import shopping.eccomerce.orders.model.Orders;
 import shopping.eccomerce.orders.model.PaymentData;
 import shopping.eccomerce.orders.model.enums.OrderStatus;
 import shopping.eccomerce.orders.model.enums.PaymentType;
+import shopping.eccomerce.orders.model.exception.ItemNotFoundException;
 import shopping.eccomerce.orders.repository.OrdersItemRepository;
 import shopping.eccomerce.orders.repository.OrdersRepository;
 import shopping.eccomerce.orders.validator.OrdersValidator;
@@ -58,7 +59,7 @@ public class OrdersService {
         var orderFound = ordersRepository.findById(orderCode);
 
         if(orderFound.isEmpty()){
-            return;
+            throw new ItemNotFoundException("Pedido não encontrado para o código informado.");
         }
 
         var order = orderFound.get();
